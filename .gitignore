@@ -1,0 +1,53 @@
+# Arquivos do ambiente virtual
+venv/
+env/
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+
+# Configurações de sistema
+.DS_Store
+*.log
+*.pot
+*.swp
+*.swo
+*.swn
+*.swm
+*.swp
+Thumbs.db
+
+# Arquivos de compilação do Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+
+# Diretórios gerados pelo Django
+/media/
+*/staticfiles/
+*/static/
+
+# Arquivos de dependências e IDE
+.idea/
+.vscode/
+*.code-workspace
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de configuração locais
+.venv/
+.env
+.env.*
+secrets.json
+
+# Docker (se usado)
+*.pid
+*.seed
+*.tmp
+*.bak
+
+# Arquivos do sistema operacional
+*.orig

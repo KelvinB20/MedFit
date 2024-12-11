@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Pressão Arterial</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Histórico de Pressão Arterial</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Registros de Pressão</h2>
+    <ul>
+        {% for registro in registros %}
+            <li>
+                {{ registro.data_hora }} - Sistólica: {{ registro.pressao_sistolica }} / Diastólica: {{ registro.pressao_diastolica }} - {{ registro.classificacao }}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <canvas id="pressaoChart"></canvas>
+
+    <script>
+
+        const labels = {{ labels|safe }};
+        const sistolica = {{ sistolica|safe }};
+        const diastolica = {{ diastolica|safe }};
+
+        const ctx = document.getElementById('pressaoChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',  // Tipo de gráfico
+            data: {
+                labels: labels,  // Labels com as datas e horas formatadas
+                datasets: [
+                    {
+                        label: 'Pressão Sistólica',
+                        data: sistolica,  // Dados sistólicos
+                        borderColor: 'red',
+                        fill: false  // Não preencher a área abaixo da linha
+                    },
+                    {
+                        label: 'Pressão Diastólica',
+                        data: diastolica,  // Dados diastólicos
+                        borderColor: 'blue',
+                        fill: false  // Não preencher a área abaixo da linha
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

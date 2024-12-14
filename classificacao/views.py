@@ -42,4 +42,5 @@ def index(request):
         'labels': labels,
         'sistolica': sistolica,
         'diastolica': diastolica,
-    })
+    }
+    )

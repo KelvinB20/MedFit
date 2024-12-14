@@ -1,0 +1,70 @@
+/* Header principal */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #44B59A; /* Gradiente moderno */
+  padding: 20px 40px; /* Aumentei o padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 120px; /* Altura maior */
+}
+
+/* Estilo da logo */
+.logoHeader {
+  height: 100px; /* Logo maior */
+  border-radius: 10px;
+  border: 0.5px solid black;
+}
+
+/* Navegação */
+.nav {
+  display: flex;
+  gap: 40px; /* Mais espaçamento entre botões */
+}
+
+.navbutton {
+  background: none;
+  color: white;
+  border: 2px solid transparent;
+  padding: 12px 20px; /* Botões maiores */
+  border-radius: 25px;
+  font-size: 18px; /* Texto maior */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 0.5px solid black;
+  background-color: #0E444B;
+}
+
+.navbutton:hover {
+  background: #0E444B;
+  color: white;
+  border: 2px solid black;
+  transform: scale(1.2); /* Leve aumento no hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra mais forte */
+}
+
+/* Ícone de perfil */
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #27ae60;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px; /* Ícone maior */
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 0.5px solid black;
+}
+
+.profile:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

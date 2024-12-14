@@ -5,15 +5,15 @@ from .models import Pressao
 
 
 def classificar_pressao(ps, pd):
-    if ps < 130 and 80 >= pd <= 89:
+    if ps < 130 and 80 <= pd <= 89:
         return "Pressão Normal"
-    elif 130 <= ps <= 139 and 90 >= pd <= 99:
+    elif 130 <= ps <= 139 and 90 <= pd <= 99:
         return "Normal Limitrofe"
     elif (140 <= ps <= 159) or (100 <= pd <= 109):
-        return "Hipertensão leve (estagio 1)"
-    elif 160 <= ps <= 179 or pd >= 100:
+        return "Hipertensão leve (estágio 1)"
+    elif 160 <= ps <= 179 or (110 <= pd <= 119):
         return "Hipertensão moderada (estágio 2)"
-    elif ps >= 180 or pd >= 110:
+    elif ps >= 180 or pd >= 120:
         return "Hipertensão Grave (estágio 3)"
     else:
         return "Indeterminado"

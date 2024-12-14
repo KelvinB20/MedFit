@@ -104,3 +104,5 @@ report.*
 
 # Arquivos do React e Vite que não devem ser rastreados
 *.log
+
+

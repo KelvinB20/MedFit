@@ -1,6 +1,6 @@
 import Header from '../../components/Header'
 
-function Menu(){
+function Inicio(){
     return(
         <>
             <Header />
@@ -8,4 +8,4 @@ function Menu(){
     )
 }
 
-export default Menu
+export default Inicio

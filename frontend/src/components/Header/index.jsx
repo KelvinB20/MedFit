@@ -1,6 +1,7 @@
-import { FaUserCircle } from "react-icons/fa";
+import { FaRegCircleUser } from "react-icons/fa6";
 import React from 'react';
 import styles from './Header.module.css'
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -12,14 +13,14 @@ function App() {
 
       {/* Navigation Buttons */}
       <nav className={styles.nav}>
-        <button className={styles.navbutton}>Início</button>
-        <button className={styles.navbutton}>Medidas</button>
-        <button className={styles.navbutton}>Medicamentos</button>
+        <Link className={styles.navlink} to="/">Início</Link>
+        <Link className={styles.navlink} to="/Medidas">Medidas</Link>
+        <Link className={styles.navlink} to="/Medicamentos">Medicamentos</Link>
       </nav>
 
       {/* Profile Icon */}
       <div className={styles.profile}>
-        <FaUserCircle />
+        <FaRegCircleUser />
       </div>
     </header>
   );

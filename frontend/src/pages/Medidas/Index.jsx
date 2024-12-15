@@ -1,6 +1,13 @@
+import Footer from '../../components/Footer/Index'
+import Header from '../../components/Header'
+
 function Medidas(){
     return(
-        <h1>Medidas</h1>
+        <>
+            <Header />
+                <h1>Medidas</h1>
+            <Footer />
+        </>
     )
 }
 

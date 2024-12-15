@@ -1,0 +1,79 @@
+/* Estilo principal do footer */
+.footer {
+  background: linear-gradient(90deg, #27ae60, #56cfe1); /* Gradiente igual ao header */
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+}
+
+.footerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Links úteis */
+.footerLinks h4,
+.footerContact h4,
+.footerSocials h4 {
+  font-size: 20px;
+  color: #0E444B;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footerLinks ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerLinks li {
+  margin: 5px 0;
+}
+
+.footerLinks a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footerLinks a:hover {
+  color: #d3f9d8;
+}
+
+/* Contato */
+.footerContact p {
+  margin: 5px 0;
+}
+
+/* Redes sociais */
+.footerSocials {
+  text-align: center;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.socialIcons a {
+  color: white;
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.socialIcons a:hover {
+  transform: scale(1.2);
+  color: #d3f9d8;
+}
+
+/* Direitos autorais */
+.footerBottom {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}

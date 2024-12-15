@@ -1,0 +1,182 @@
+/* Container principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #27ae60, #56cfe1);
+  padding: 20px;
+}
+
+/* Contêiner do formulário */
+.formContainer {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Títulos */
+h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.input {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #27ae60;
+}
+
+/* Botão */
+.button {
+  padding: 10px 15px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.button:hover {
+  background: #1e8e57;
+}
+
+/* Texto de alternância */
+.toggleText {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.toggleLink {
+  color: #27ae60;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
+}
+
+.toggleLink:hover {
+  color: #1e8e57;
+}
+
+/* Containers de autenticação */
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f4f4;
+}
+
+/* Formulário de login e registro */
+.formWrapperLogin, .formWrapperRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Animação de transição entre login e registro */
+.formWrapperLogin {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.formWrapperRegister {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.formWrapperLogin .formWrapperRegister {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Estilo para o campo de Data de Nascimento */
+.input[type="date"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Botão de texto alternativo */
+p button {
+  background: none;
+  border: none;
+  color: #27ae60;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+p button:hover {
+  color: #2ecc71;
+}
+
+/* Estilo de foco nos inputs */
+.input:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+/* Estilo geral dos botões */
+button {
+  padding: 10px 15px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2ecc71;
+}
+

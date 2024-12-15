@@ -1,0 +1,125 @@
+.authContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+  }
+  
+  .formWrapperLogin, .formWrapperRegister {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .formWrapperLogin {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .formWrapperRegister {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  
+  .formWrapperLogin .formWrapperRegister {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #2ecc71;
+  }
+  
+  p {
+    margin-top: 20px;
+  }
+  
+  p button {
+    background: none;
+    border: none;
+    color: #27ae60;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+  
+  p button:hover {
+    color: #2ecc71;
+  }
+.input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2ecc71;
+}
+
+.toggleText {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.toggleLink {
+  color: #27ae60;
+  cursor: pointer;
+}
+
+.toggleLink:hover {
+  text-decoration: underline;
+}
+  

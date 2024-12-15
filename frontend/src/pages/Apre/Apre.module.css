@@ -1,3 +1,94 @@
+/* Container Principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #27ae60, #56cfe1);
+  color: #333;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.logoHeader{
+  width: 550px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  background-color: #27ae60;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #1e8e57;
+}
+
+/* Conteúdo Principal */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Seção Hero */
+.hero {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #f0f0f0;
+  margin-bottom: 30px;
+}
+
+.ctaButton {
+  padding: 15px 30px;
+  font-size: 16px;
+  text-decoration: none;
+  background-color: white;
+  color: #27ae60;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.ctaButton:hover {
+  background-color: #27ae60;
+  color: white;
+}
 
 /* Seção de Benefícios */
 .benefits {
@@ -85,7 +176,6 @@
 .extraCTA {
   padding: 30px 20px;
   text-align: center;
-  background: linear-gradient(90deg, #27ae60, #56cfe1);
   color: white;
 }
 

@@ -1,6 +1,7 @@
 import Footer from '../../components/Footer/Index';
 import Header from '../../components/Header';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './Medicamentos.module.css';
 
 function Medicamentos() {
@@ -9,22 +10,50 @@ function Medicamentos() {
     const [interval, setInterval] = useState('');
     const [notes, setNotes] = useState('');
 
-    const handleAddMedicine = (e) => {
+    // Buscar medicamentos do backend ao carregar a página
+    useEffect(() => {
+        fetchMedicines();
+    }, []);
+
+    const fetchMedicines = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/medicamentos');
+            setMedicines(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar medicamentos:', error);
+        }
+    };
+
+    const handleAddMedicine = async (e) => {
         e.preventDefault();
         if (!medicineName || !interval) {
             alert('Por favor, preencha o nome do medicamento e o intervalo.');
             return;
         }
 
-        setMedicines([...medicines, { name: medicineName, interval, notes }]);
-        setMedicineName('');
-        setInterval('');
-        setNotes('');
+        try {
+            await axios.post('http://localhost:5000/api/medicamentos', {
+                name: medicineName,
+                interval: parseInt(interval), // Converte o intervalo para número
+                notes,
+            });
+            fetchMedicines(); // Atualiza a lista após adicionar
+            setMedicineName('');
+            setInterval('');
+            setNotes('');
+        } catch (error) {
+            console.error('Erro ao adicionar medicamento:', error);
+        }
     };
 
-    const handleRemoveMedicine = (index) => {
-        const newMedicines = medicines.filter((_, i) => i !== index);
-        setMedicines(newMedicines);
+    const handleRemoveMedicine = async (index) => {
+        const medicineToRemove = medicines[index]; // Seleciona o medicamento pelo índice
+        try {
+            await axios.delete(`http://localhost:5000/api/medicamentos/${medicineToRemove.name}`);
+            fetchMedicines(); // Atualiza a lista após remover
+        } catch (error) {
+            console.error('Erro ao remover medicamento:', error);
+        }
     };
 
     return (

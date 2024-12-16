@@ -16,8 +16,15 @@ data_collection = mongo.db.measurements
 # Endpoint para buscar os dados armazenados
 @app.route('/data', methods=['GET'])
 def get_data():
-    data = list(data_collection.find())
-    return dumps(data), 200
+    try:
+        # Garantir que o timestamp seja enviado como string ISO 8601 para o frontend
+        data = list(data_collection.find())
+        for entry in data:
+            if "timestamp" in entry and isinstance(entry["timestamp"], datetime):
+                entry["timestamp"] = entry["timestamp"].isoformat()  # Converter datetime para string ISO
+        return dumps(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Endpoint para salvar novos dados
 @app.route('/data', methods=['POST'])
@@ -46,7 +53,7 @@ def save_data():
             "imc": imc,
             "categoria_imc": categoria_imc,
             "categoria_pa": categoria_pa,
-            "timestamp": datetime.now()
+            "timestamp": datetime.utcnow()  # Usar UTC para consistência
         }
 
         data_collection.insert_one(measurement)
@@ -56,7 +63,27 @@ def save_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Endpoint para corrigir timestamps inválidos
+@app.route('/fix-timestamps', methods=['POST'])
+def fix_timestamps():
+    try:
+        updated_count = 0
+
+        # Encontrar documentos sem timestamp ou com formato inválido
+        documents = data_collection.find()
+        for doc in documents:
+            if "timestamp" not in doc or not isinstance(doc["timestamp"], datetime):
+                # Atualizar documento com um novo timestamp no formato correto
+                data_collection.update_one(
+                    {"_id": doc["_id"]},
+                    {"$set": {"timestamp": datetime.utcnow()}}
+                )
+                updated_count += 1
+
+        return jsonify({"message": f"Timestamps corrigidos em {updated_count} documentos."}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-

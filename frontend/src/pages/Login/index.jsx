@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";  // Importando o hook useNavigate
 import styles from "./Login.module.css";
 
 function Login() {
   const [isRegister, setIsRegister] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "", birthDate: "" });
+
+  const navigate = useNavigate(); // Inicializando o useNavigate
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,9 +22,14 @@ function Login() {
         : "http://localhost:5000/api/auth/login";
       const response = await axios.post(url, formData);
 
-      alert(response.data.message);
-      if (!isRegister) {
+      if (isRegister) {
+        // Após o registro, redireciona para a tela de login
+        location.reload();
+        navigate("/Login");  // Redireciona para a página de login após o registro
+      } else {
+        // Se for um login bem-sucedido, armazene o token no localStorage e redirecione
         localStorage.setItem("token", response.data.token);
+        navigate("/Inicio");  // Caminho para a página de "Inicio"
       }
     } catch (error) {
       alert(error.response?.data?.error || "Erro ao processar a requisição.");
@@ -97,4 +105,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;

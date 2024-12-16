@@ -5,20 +5,18 @@ import Login from "./pages/Login";
 import Medicamentos from "./pages/Medicamentos";
 import Medidas from "./pages/Medidas/Index";
 
-
-function AppRoutes(){
-    return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={ <Inicio /> }></Route>
-                <Route path="/Apre" element={ <Apre /> }></Route>
-                <Route path="/Login" element={ <Login /> }></Route>
-                <Route path="/Medicamentos" element={ <Medicamentos /> }></Route>
-                <Route path="/Medidas" element={ <Medidas /> }></Route>
-
-            </Routes>
-        </BrowserRouter>
-    )
+function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/Inicio" element={<Inicio />} />
+        <Route path="/" element={<Apre />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Medicamentos" element={<Medicamentos />} />
+        <Route path="/Medidas" element={<Medidas />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default AppRoutes
+export default AppRoutes;

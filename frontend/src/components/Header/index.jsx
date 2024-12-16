@@ -13,7 +13,7 @@ function App() {
 
       {/* Navigation Buttons */}
       <nav className={styles.nav}>
-        <Link className={styles.navlink} to="/">Início</Link>
+        <Link className={styles.navlink} to="/Inicio">Início</Link>
         <Link className={styles.navlink} to="/Medidas">Acompanhamentos</Link>
         <Link className={styles.navlink} to="/Medicamentos">Medicamentos</Link>
       </nav>

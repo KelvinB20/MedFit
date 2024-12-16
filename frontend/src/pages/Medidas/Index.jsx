@@ -5,7 +5,7 @@ function Medidas(){
     return(
         <>
             <Header />
-                <h1>Medidas</h1>
+                <h1>medidas</h1>
             <Footer />
         </>
     )

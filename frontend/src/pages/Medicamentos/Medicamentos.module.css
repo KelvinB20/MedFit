@@ -1,125 +1,130 @@
-.authContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f4f4f4;
-  }
-  
-  .formWrapperLogin, .formWrapperRegister {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 400px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  .formWrapperLogin {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .formWrapperRegister {
-    position: absolute;
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  
-  .formWrapperLogin .formWrapperRegister {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-  }
-  
-  input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #2ecc71;
-  }
-  
-  p {
-    margin-top: 20px;
-  }
-  
-  p button {
-    background: none;
-    border: none;
-    color: #27ae60;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: underline;
-  }
-  
-  p button:hover {
-    color: #2ecc71;
-  }
-.input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  margin-bottom: 15px;
+.medicationPagecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
 }
 
-button {
+.medicationForm {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #27ae60;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.formLeft, .formRight {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
   padding: 10px;
-  background-color: #27ae60;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.ctaButton {
+  grid-column: span 2;
+  padding: 12px;
+  background: #27ae60;
   color: white;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
-button:hover {
-  background-color: #2ecc71;
+.ctaButton:hover {
+  background: #1e8e57;
 }
 
-.toggleText {
+.medicationList {
+  width: 100%;
+  max-width: 1500px;
   margin-top: 20px;
+  min-height: calc(2 * (180px + 20px)); /* Espaço para 2 linhas de cartões (altura do cartão + espaçamento) */
+}
+
+.medicationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta automaticamente */
+  gap: 20px; /* Espaçamento entre as caixas */
+}
+
+.medicationCard {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 
-.toggleLink {
+.medicationCard h3 {
   color: #27ae60;
-  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-.toggleLink:hover {
-  text-decoration: underline;
+.medicationCard p {
+  font-size: 14px;
+  margin: 5px 0;
 }
-  
+
+.medicationCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px #1e8e57; /* Sombra com a cor desejada */
+}
+
+.noMedicationsMessage {
+  font-style: italic;
+  color: #555;
+  text-align: center;
+}
+.deleteButton {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}

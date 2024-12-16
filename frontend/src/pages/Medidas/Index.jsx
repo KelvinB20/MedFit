@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import Footer from '../../components/Footer/Index';
@@ -16,6 +16,61 @@ function Medidas() {
   const [paData, setPaData] = useState([]); // Histórico de PA
   const [currentImc, setCurrentImc] = useState(null); // IMC atual
   const [currentPa, setCurrentPa] = useState(null); // PA atual
+
+  // Função para buscar os dados do banco ao carregar a página
+  useEffect(() => {
+    fetch('http://localhost:5000/data')
+      .then((response) => response.json())
+      .then((data) => {
+        const imcHistory = data.map((entry) => {
+          const date = new Date(entry.timestamp); // Criar um objeto de data
+          const isValidDate = !isNaN(date.getTime()); // Verificar se é uma data válida
+        
+          return {
+            label: isValidDate ? date.toLocaleDateString() : 'Data inválida', // Exibe uma mensagem se a data for inválida
+            value: entry.imc,
+            category: entry.categoria_imc,
+          };
+        });
+        const paHistory = data.map((entry) => ({
+          label: new Date(entry.timestamp).toLocaleDateString(),
+          systolic: entry.sistolica,
+          diastolic: entry.diastolica,
+          category: entry.categoria_pa,
+        }));
+
+        setImcData(imcHistory);
+        setPaData(paHistory);
+      })
+      .catch((err) => console.error('Erro ao carregar dados:', err));
+  }, []);
+
+  // Função para salvar dados no banco
+  const saveDataToDB = (newIMC) => {
+    const data = {
+      altura: parseFloat(altura),
+      peso: parseFloat(peso),
+      sistolica: parseInt(sistolica),
+      diastolica: parseInt(diastolica),
+      imc: parseFloat(newIMC),
+      categoria_imc: categorizeIMC(newIMC),
+      categoria_pa: categorizePA(sistolica, diastolica),
+    };
+
+    fetch('http://localhost:5000/data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Dados salvos com sucesso!');
+        } else {
+          console.error('Erro ao salvar dados:', response);
+        }
+      })
+      .catch((err) => console.error('Erro na conexão com o backend:', err));
+  };
 
   // Função para calcular o IMC
   const handleIMC = () => {
@@ -35,15 +90,7 @@ function Medidas() {
     return 'Obesidade Grave';
   };
 
-  // Função para calcular a Pressão Arterial
-  const handlePA = () => {
-    if (sistolica && diastolica) {
-      return `PA: ${sistolica}/${diastolica}`;
-    }
-    return null;
-  };
-
-  // Função para determinar a categoria da Pressão Arterial (com a nova tabela fornecida)
+  // Função para determinar a categoria da Pressão Arterial
   const categorizePA = (sistolica, diastolica) => {
     if (sistolica < 130 && diastolica >= 80 && diastolica <= 89) return 'Pressão Normal';
     if (sistolica >= 130 && sistolica <= 139 && diastolica >= 90 && diastolica <= 99) return 'Normal Limítrofe';
@@ -53,28 +100,30 @@ function Medidas() {
     return 'Indeterminado';
   };
 
-  // Função para adicionar IMC ao gráfico
+  // Função para adicionar IMC ao gráfico e salvar no banco
   const addIMCData = () => {
     const newIMC = handleIMC();
     if (newIMC) {
+      saveDataToDB(newIMC);
       const imcCategory = categorizeIMC(newIMC);
       setImcData((prevData) => [
         ...prevData,
-        { label: `Entrada ${new Date().toLocaleDateString()}`, value: newIMC, category: imcCategory },
+        { label: `${new Date().toLocaleDateString()}`, value: newIMC, category: imcCategory },
       ]);
-      setCurrentImc(newIMC); // Atualizando o gráfico pequeno com o valor atual
+      setCurrentImc(newIMC);
     }
   };
 
-  // Função para adicionar PA ao gráfico
+  // Função para adicionar PA ao gráfico e salvar no banco
   const addPAData = () => {
     if (sistolica && diastolica) {
+      saveDataToDB(handleIMC());
       const paCategory = categorizePA(sistolica, diastolica);
       setPaData((prevData) => [
         ...prevData,
-        { label: `Entrada ${new Date().toLocaleDateString()}`, systolic: sistolica, diastolic: diastolica, category: paCategory },
+        { label: `${new Date().toLocaleDateString()}`, systolic: sistolica, diastolic: diastolica, category: paCategory },
       ]);
-      setCurrentPa({ systolic: sistolica, diastolic: diastolica }); // Atualizando o gráfico pequeno com o valor atual
+      setCurrentPa({ systolic: sistolica, diastolic: diastolica });
     }
   };
 
